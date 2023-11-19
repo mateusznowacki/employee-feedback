@@ -1,14 +1,16 @@
 package pl.edu.pwr.model;
 
+import java.sql.Date;
+
 public class Feedback {
     private final int opinionID;
     private final int employeeID;
-    private final String date;
+    private final Date date;
     private boolean isPositive;
     private int weight;
     private String comment;
 
-    public Feedback(int opinionID, int employeeID, String date, boolean isPositive, int weight, String comment) {
+    public Feedback(int opinionID, int employeeID, Date date, boolean isPositive, int weight, String comment) {
         this.opinionID = opinionID;
         this.employeeID = employeeID;
         this.date = date;
@@ -25,7 +27,7 @@ public class Feedback {
         return employeeID;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 

@@ -21,8 +21,14 @@
             <artifactId>sqlite-jdbc</artifactId>
             <version>3.42.0.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.jline</groupId>
+            <artifactId>jline-reader</artifactId>
+            <version>3.21.0</version>
+        </dependency>
     </dependencies>
+
+
 
 
 </project>

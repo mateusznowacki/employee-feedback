@@ -3,12 +3,18 @@ package pl.edu.pwr.model;
 import java.util.Objects;
 
 public class Employee {
-    private final int employeeID;
+    private  int employeeID;
     private final String firstName;
     private final String lastName;
     private final String email;
 
-    public Employee(int employeeID, String firstName, String lastName, String email) {
+    public Employee(String firstName, String lastName, String email) {
+
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+    public Employee(int employeeID,String firstName, String lastName, String email) {
         this.employeeID = employeeID;
         this.firstName = firstName;
         this.lastName = lastName;

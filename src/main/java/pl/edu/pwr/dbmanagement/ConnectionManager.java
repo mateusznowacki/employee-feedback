@@ -8,7 +8,7 @@ public class ConnectionManager {
 
     private static ConnectionManager instance;
     private Connection connection;
-    private static final String URL = "jdbc:sqlite:employee-feedback.sqlite";
+    private static final String URL = "jdbc:sqlite:src/main/resources/database.db";
 
     private ConnectionManager() {
         try {
@@ -50,6 +50,5 @@ public class ConnectionManager {
             throw new RuntimeException("Blad podczas zamykania polaczenia z baza danych", e);
         }
     }
-
 
 }
