@@ -3,6 +3,8 @@ package pl.edu.pwr.service;
 import pl.edu.pwr.model.Feedback;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class FeedbackController implements FeedbackService {
@@ -14,13 +16,56 @@ public class FeedbackController implements FeedbackService {
     }
 
     @Override
-    public void addFeedback(Feedback feedback) {
+    public void editFeedback(int feedbackID) {
 
     }
 
     @Override
-    public void cancelFeedback(int feedbackId) {
+    public void addFeedback(Feedback feedback) {
 
+        String sqlInsertFeedback = "INSERT INTO feedback (employee_id, date, is_positive, weight, comment) VALUES (?,?,?,?,?)";
+        try (PreparedStatement statement = connection.prepareStatement(sqlInsertFeedback)) {
+            statement.setInt(1, feedback.getEmployeeID());
+            statement.setDate(2, feedback.getDate());
+            statement.setBoolean(3, feedback.isPositive());
+            statement.setInt(4, feedback.getWeight());
+            statement.setString(5, feedback.getComment());
+
+            int rowsAffected = statement.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Opinia dodana");
+            } else {
+                System.out.println("Błąd podczas dodawania opinii");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteFeedback(int id, boolean deleteAll) {
+        String sql;
+
+        if (deleteAll == true) {
+            sql = "DELETE FROM feedback WHERE employee_id = ? ";
+        } else {
+            sql = "DELETE FROM feedback WHERE feedback_id = ? ";
+        }
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
+
+            int rowsAffected = statement.executeUpdate();
+            if (rowsAffected > 0 && deleteAll == true) {
+                System.out.println("Wszystkie opinie zostały usunięte");
+            } else if (rowsAffected > 0 && deleteAll == false) {
+                System.out.println("Opinia została usunięta");
+            } else {
+                System.out.println("Blad podczas usuwania opinii");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

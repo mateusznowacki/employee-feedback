@@ -1,5 +1,6 @@
 package pl.edu.pwr.io;
 
+import pl.edu.pwr.dbmanagement.RecordFinder;
 import pl.edu.pwr.model.Employee;
 
 import java.util.Scanner;
@@ -40,49 +41,47 @@ public class ConsoleReader {
         String email;
 
         int employeeId = getEmployeeIdFromUser();
+        if (employeeId != 0) {
+            firstName = inputValidator.getCorrectFirstName();
+            lastName = inputValidator.getCorrectLastName();
+            email = inputValidator.getCorrectEmail();
 
-
-        firstName = inputValidator.getCorrectFirstName();
-        lastName = inputValidator.getCorrectLastName();
-        email = inputValidator.getCorrectEmail();
-
-        return new Employee(employeeId, firstName, lastName, email);
+            return new Employee(employeeId, firstName, lastName, email);
+        } else {
+         return new Employee(0,"NONE","NONE","NONE");
+        }
     }
 
 
     public int getEmployeeIdFromUser() {
-        int employeeID;
+        int employeeID = 0;
 
         System.out.println("Wybierz opcje z menu:");
         System.out.println("1. Podaj id pracownika");
-        System.out.println("2. Znajdz pracownika po imieniu i nazwisku lub emailu");
+        System.out.println("2. Znajdz pracownika po imieniu i nazwisku");
         int choice = scanner.nextInt();
 
         switch (choice) {
             case 1: {
                 System.out.println("Podaj id pracownika");
                 employeeID = inputValidator.getCorrectID();
+                break;
             }
-            break;
             case 2: {
-                System.out.println("Podaj imie pracownika");
-                String firstName = scanner.next();
-                System.out.println("Podaj nazwisko pracownika");
-                String lastName = scanner.next();
-                System.out.println("Podaj email pracownika");
-                String email = scanner.next();
+                String firstName = inputValidator.getCorrectFirstName();
+                String lastName = inputValidator.getCorrectLastName();
 
-                //
-                // do dodania wyszykanie w bazie danych
-                //
+                RecordFinder finder = new RecordFinder();
+                finder.findClosestRecord(firstName + "," + lastName);
                 employeeID = inputValidator.getCorrectID();
+                break;
             }
-            break;
-            default:
+            default: {
                 System.out.println("Musisz podac id pracownika do usuniecia");
                 employeeID = inputValidator.getCorrectID();
+                break;
+            }
         }
-
         return employeeID;
     }
 

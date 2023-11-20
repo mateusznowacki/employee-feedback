@@ -64,10 +64,10 @@ public class InputValidator {
             String input = scanner.nextLine().trim();
             try {
                 id = Integer.parseInt(input);
-                if (id > 0) {
+                if (id >= 0) {
                     break; // Poprawne ID, przerywamy pętlę
                 } else {
-                    System.out.println("Identyfikator (ID) powinien być dodatnią liczbą całkowitą.");
+                    System.out.println("Identyfikator ID powinien być dodatnią liczbą całkowitą");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Błędny identyfikator (ID). Spróbuj ponownie.");

@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:sqlite:G:\JavaProjects\employee-feedback\src\main\resources\database.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="@mariadb" uuid="16e62590-dbc8-4839-8af3-2723b91fcbe0">
+      <driver-ref>mariadb</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mariadb://mariadb106.server639277.nazwa.pl:3306/server639277_empfb</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

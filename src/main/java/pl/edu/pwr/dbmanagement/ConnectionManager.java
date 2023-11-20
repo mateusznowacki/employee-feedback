@@ -9,10 +9,13 @@ public class ConnectionManager {
     private static ConnectionManager instance;
     private Connection connection;
     private static final String URL = "jdbc:sqlite:src/main/resources/database.db";
+   // private static final String user = "server639277_empfb";
+  //  private static final String password = "Admin123#";
+
 
     private ConnectionManager() {
         try {
-            Class.forName("org.sqlite.JDBC");
+            Class.forName("org.mariadb.jdbc.Driver");
             this.connection = DriverManager.getConnection(URL);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -35,7 +38,6 @@ public class ConnectionManager {
     }
 
     public Connection getConnection() {
-        System.out.println("Otwieram polaczenie z baza danych");
         return connection;
     }
 

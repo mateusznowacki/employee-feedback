@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public interface FeedbackService {
     void addFeedback(Feedback feedback);
 
-    void cancelFeedback(int feedbackId);
+    void deleteFeedback(int id, boolean deleteAll);
 
     ArrayList<Feedback> getTrendWeekly(int employeeId);
 
@@ -15,4 +15,5 @@ public interface FeedbackService {
 
     ArrayList<Feedback> getTrendQuarterly(int employeeId);
 
+    void editFeedback(int feedbackID);
 }

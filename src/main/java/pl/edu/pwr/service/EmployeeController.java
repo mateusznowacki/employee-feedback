@@ -18,30 +18,29 @@ public class EmployeeController implements EmployeeService {
 
     @Override
     public void addEmployee(Employee employee) {
-        try {
-            String sqlCheckExistingEmail = "SELECT COUNT(*) FROM employee WHERE email = ?";
-            try (PreparedStatement checkEmailStatement = connection.prepareStatement(sqlCheckExistingEmail)) {
-                checkEmailStatement.setString(1, employee.getEmail());
-                ResultSet resultSet = checkEmailStatement.executeQuery();
-                resultSet.next();
-                int existingEmailCount = resultSet.getInt(1);
 
-                if (existingEmailCount > 0) {
-                    System.out.println("Pracownik o takim emailu juz istnieje, pracownik musi miec unikalny email");
-                } else {
-                    String sqlInsertEmployee = "INSERT INTO employee (first_name, last_name, email) VALUES (?, ?, ?)";
-                    try (PreparedStatement preparedStatement = connection.prepareStatement(sqlInsertEmployee)) {
-                        preparedStatement.setString(1, employee.getFirstName());
-                        preparedStatement.setString(2, employee.getLastName());
-                        preparedStatement.setString(3, employee.getEmail());
+        String sqlCheckExistingEmail = "SELECT COUNT(*) FROM employee WHERE email = ?";
+        try (PreparedStatement checkEmailStatement = connection.prepareStatement(sqlCheckExistingEmail)) {
+            checkEmailStatement.setString(1, employee.getEmail());
+            ResultSet resultSet = checkEmailStatement.executeQuery();
+            resultSet.next();
+            int existingEmailCount = resultSet.getInt(1);
 
-                        int rowsAffected = preparedStatement.executeUpdate();
+            if (existingEmailCount > 0) {
+                System.out.println("Pracownik o takim emailu juz istnieje, pracownik musi miec unikalny email");
+            } else {
+                String sqlInsertEmployee = "INSERT INTO employee (first_name, last_name, email) VALUES (?, ?, ?)";
+                try (PreparedStatement preparedStatement = connection.prepareStatement(sqlInsertEmployee)) {
+                    preparedStatement.setString(1, employee.getFirstName());
+                    preparedStatement.setString(2, employee.getLastName());
+                    preparedStatement.setString(3, employee.getEmail());
 
-                        if (rowsAffected > 0) {
-                            System.out.println("Pracownik zostal dodany prawwdlowo");
-                        } else {
-                            System.out.println("Blad podczas dodawania pracownika");
-                        }
+                    int rowsAffected = preparedStatement.executeUpdate();
+
+                    if (rowsAffected > 0) {
+                        System.out.println("Pracownik zostal dodany prawwdlowo");
+                    } else {
+                        System.out.println("Blad podczas dodawania pracownika");
                     }
                 }
             }
@@ -75,13 +74,12 @@ public class EmployeeController implements EmployeeService {
                 if (rowsAffected > 0) {
                     System.out.println("Dane pracownika zostały zaktualizowane");
                 } else {
-                    System.out.println("Nie znaleziono pracownika do zaktualizowania");
+                    System.out.println("Nie zaktualizowano danych pracownika");
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
