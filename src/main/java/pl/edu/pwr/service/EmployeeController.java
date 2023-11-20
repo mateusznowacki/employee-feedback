@@ -61,21 +61,20 @@ public class EmployeeController implements EmployeeService {
 
     @Override
     public void updateEmployeeData(Employee employee) {
-        try {
-            String sqlUpdateEmployee = "UPDATE employee SET first_name=?,last_name=?,email=? WHERE employee_id=? ";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sqlUpdateEmployee)) {
-                preparedStatement.setString(1, employee.getFirstName());
-                preparedStatement.setString(2, employee.getLastName());
-                preparedStatement.setString(3, employee.getEmail());
-                preparedStatement.setInt(4, employee.getEmployeeID());
 
-                int rowsAffected = preparedStatement.executeUpdate();
+        String sqlUpdateEmployee = "UPDATE employee SET first_name=?,last_name=?,email=? WHERE employee_id=? ";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlUpdateEmployee)) {
+            preparedStatement.setString(1, employee.getFirstName());
+            preparedStatement.setString(2, employee.getLastName());
+            preparedStatement.setString(3, employee.getEmail());
+            preparedStatement.setInt(4, employee.getEmployeeID());
 
-                if (rowsAffected > 0) {
-                    System.out.println("Dane pracownika zostały zaktualizowane");
-                } else {
-                    System.out.println("Nie zaktualizowano danych pracownika");
-                }
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Dane pracownika zostały zaktualizowane");
+            } else {
+                System.out.println("Nie zaktualizowano danych pracownika");
             }
         } catch (SQLException e) {
             e.printStackTrace();

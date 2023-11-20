@@ -3,7 +3,7 @@ package pl.edu.pwr.model;
 import java.util.Objects;
 
 public class Employee {
-    private  int employeeID;
+    private int employeeID;
     private final String firstName;
     private final String lastName;
     private final String email;

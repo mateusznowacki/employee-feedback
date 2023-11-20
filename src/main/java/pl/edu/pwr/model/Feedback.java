@@ -3,7 +3,7 @@ package pl.edu.pwr.model;
 import java.sql.Date;
 
 public class Feedback {
-    private final int opinionID;
+    private int opinionID;
     private final int employeeID;
     private final Date date;
     private boolean isPositive;
@@ -18,6 +18,18 @@ public class Feedback {
         this.weight = weight;
         this.comment = comment;
     }
+
+    public Feedback( int employeeID, Date date, boolean isPositive, int weight, String comment) {
+        this.employeeID = employeeID;
+        this.date = date;
+        this.isPositive = isPositive;
+        this.weight = weight;
+        this.comment = comment;
+    }
+
+
+
+
 
     public int getOpinionID() {
         return opinionID;

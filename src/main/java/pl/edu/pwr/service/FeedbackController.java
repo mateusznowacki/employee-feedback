@@ -17,8 +17,23 @@ public class FeedbackController implements FeedbackService {
 
     @Override
     public void editFeedback(int feedbackID) {
+        String sql = "UPDATE feedback SET  is_positive=?, weight=?, comment=? WHERE feedback_id";
 
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+
+
+
+        int rowsAffected = statement.executeUpdate();
+
+        if (rowsAffected > 0) {
+            System.out.println("Feedback został zaktualizowany");
+        } else {
+            System.out.println("Nie zaktualizowano feedbacku");
+        }
+     } catch (SQLException e) {
+        e.printStackTrace();
     }
+}
 
     @Override
     public void addFeedback(Feedback feedback) {

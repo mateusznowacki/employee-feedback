@@ -2,7 +2,9 @@ package pl.edu.pwr.io;
 
 import pl.edu.pwr.dbmanagement.RecordFinder;
 import pl.edu.pwr.model.Employee;
+import pl.edu.pwr.model.Feedback;
 
+import java.sql.Date;
 import java.util.Scanner;
 
 
@@ -16,7 +18,6 @@ public class ConsoleReader {
     }
 
     public int getChoice() {
-
         return scanner.nextInt();
     }
 
@@ -48,7 +49,7 @@ public class ConsoleReader {
 
             return new Employee(employeeId, firstName, lastName, email);
         } else {
-         return new Employee(0,"NONE","NONE","NONE");
+            return new Employee(0, "NONE", "NONE", "NONE");
         }
     }
 
@@ -77,7 +78,7 @@ public class ConsoleReader {
                 break;
             }
             default: {
-                System.out.println("Musisz podac id pracownika do usuniecia");
+                System.out.println("Musisz podac id pracownika ");
                 employeeID = inputValidator.getCorrectID();
                 break;
             }
@@ -86,4 +87,19 @@ public class ConsoleReader {
     }
 
 
+    public Feedback getFeedbackData() {
+        int employeeID;
+        Date date;
+        boolean isPositive;
+        int weight;
+        String comment;
+
+        employeeID = getEmployeeIdFromUser();
+        date = inputValidator.getCorrectDate();
+        isPositive = inputValidator.getCorrectGrade();
+        weight = inputValidator.getCorrectOpionionWeight();
+        comment = inputValidator.getComment();
+
+        return new Feedback(employeeID, date, isPositive, weight, comment);
+    }
 }
