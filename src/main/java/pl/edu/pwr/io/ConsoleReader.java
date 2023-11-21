@@ -18,7 +18,10 @@ public class ConsoleReader {
     }
 
     public int getChoice() {
-        return scanner.nextInt();
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+
+        return choice;
     }
 
     public Employee getEmployeeDataFromUser() {
@@ -26,11 +29,9 @@ public class ConsoleReader {
         String lastName;
         String email;
 
-
         firstName = inputValidator.getCorrectFirstName();
         lastName = inputValidator.getCorrectLastName();
         email = inputValidator.getCorrectEmail();
-
 
         return new Employee(firstName, lastName, email);
     }
@@ -86,6 +87,35 @@ public class ConsoleReader {
         return employeeID;
     }
 
+    public Feedback getFeedbackUpdateData() {
+        int feedbackID;
+        boolean isPositive;
+        int weight;
+        String comment;
+
+        feedbackID = getFeedbackIdFromUser();
+        isPositive = inputValidator.getCorrectGrade();
+        weight = inputValidator.getCorrectOpionionWeight();
+        comment = inputValidator.getComment();
+
+        return new Feedback(feedbackID, isPositive, weight, comment);
+    }
+
+    public int getFeedbackIdFromUser() {
+        int opinionID;
+
+        System.out.println("Jeśli znasz numer opinii wpisz 0, jeśli chcesz znależć opinię po pracowniku 1");
+        int decision = Integer.parseInt(scanner.nextLine().trim());
+
+        if (decision == 1) {
+            RecordFinder finder = new RecordFinder();
+            finder.findAllEmployeeOpinions(getEmployeeIdFromUser());
+        }
+        System.out.println("Podaj id opinii ");
+        opinionID = inputValidator.getCorrectID();
+
+        return opinionID;
+    }
 
     public Feedback getFeedbackData() {
         int employeeID;

@@ -13,7 +13,33 @@ public class RecordFinder {
         this.connection = ConnectionManager.getInstance().getConnection();
     }
 
+    public void findAllEmployeeOpinions(int employeeID) {
+        boolean isResultSetEmpty = true;
+
+        String sql = "SELECT feedback_id,comment FROM feedback where employee_id=?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, employeeID);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                isResultSetEmpty=false;
+
+                String resultFeedbackID = resultSet.getString("feedback_id");
+                String resultComment = resultSet.getString("comment");
+                System.out.println("id: " + resultFeedbackID + " " + resultComment);
+            }
+            if (isResultSetEmpty) {
+                System.out.println("Nie znalezono opinii dla podanego pracownika");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void findClosestRecord(String userInput) {
+        boolean isResultSetEmpty = true;
 
         String parts[] = userInput.split(",");
         String firstName = parts[0];
@@ -35,6 +61,8 @@ public class RecordFinder {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
+                isResultSetEmpty= false;
+
                 int employeeId = resultSet.getInt("employee_id");
                 String resultFirstName = resultSet.getString("first_name");
                 String resultLastName = resultSet.getString("last_name");
@@ -42,7 +70,7 @@ public class RecordFinder {
 
                 System.out.println("id: " + employeeId + " " + resultFirstName + " " + resultLastName + " " + resultEmail);
             }
-            if(!resultSet.next()){
+            if (isResultSetEmpty) {
                 System.out.println("Nie znalezono takiego pracownika, aby kontynuować wpisz 0");
             }
 

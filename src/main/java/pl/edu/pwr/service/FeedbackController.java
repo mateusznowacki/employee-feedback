@@ -16,10 +16,14 @@ public class FeedbackController implements FeedbackService {
     }
 
     @Override
-    public void editFeedback(int feedbackID) {
-        String sql = "UPDATE feedback SET  is_positive=?, weight=?, comment=? WHERE feedback_id";
+    public void editFeedback(Feedback feedback) {
+        String sql = "UPDATE feedback SET  is_positive=?, weight=?, comment=? WHERE feedback_id=?";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        statement.setBoolean(1,feedback.isPositive());
+        statement.setInt(2,feedback.getWeight());
+        statement.setString(3,feedback.getComment());
+        statement.setInt(4,feedback.getOpinionID());
 
 
 

@@ -72,10 +72,10 @@ public class InputValidator {
                 if (id >= 0) {
                     break; // Poprawne ID, przerywamy pętlę
                 } else {
-                    System.out.println("Identyfikator ID powinien być dodatnią liczbą całkowitą");
+                    System.out.println("id to liczba większa od 0");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Błędny identyfikator (ID). Spróbuj ponownie.");
+                System.out.println("Błędne id");
             }
         } while (true);
 
@@ -140,7 +140,7 @@ public class InputValidator {
     public String getComment() {
         String comment;
         do {
-            System.out.print("Wpisz komentarz do feedbacku");
+            System.out.println("Wpisz komentarz do opinii");
             comment = scanner.nextLine();
             if (comment.length() > 0) {
                 break; // jest komentarz

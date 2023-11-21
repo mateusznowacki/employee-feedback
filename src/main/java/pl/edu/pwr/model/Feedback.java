@@ -4,31 +4,26 @@ import java.sql.Date;
 
 public class Feedback {
     private int opinionID;
-    private final int employeeID;
-    private final Date date;
+    private int employeeID;
+    private  Date date;
     private boolean isPositive;
     private int weight;
     private String comment;
 
-    public Feedback(int opinionID, int employeeID, Date date, boolean isPositive, int weight, String comment) {
+    public Feedback(int opinionID, boolean isPositive,  int weight, String comment) {
         this.opinionID = opinionID;
+        this.isPositive = isPositive;
+        this.weight = weight;
+        this.comment = comment;
+    }
+
+    public Feedback(int employeeID, Date date, boolean isPositive, int weight, String comment) {
         this.employeeID = employeeID;
         this.date = date;
         this.isPositive = isPositive;
         this.weight = weight;
         this.comment = comment;
     }
-
-    public Feedback( int employeeID, Date date, boolean isPositive, int weight, String comment) {
-        this.employeeID = employeeID;
-        this.date = date;
-        this.isPositive = isPositive;
-        this.weight = weight;
-        this.comment = comment;
-    }
-
-
-
 
 
     public int getOpinionID() {

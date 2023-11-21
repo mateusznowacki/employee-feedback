@@ -44,15 +44,15 @@ public class Main {
                     break;
                 }
                 case 5: {
-                    feedbackController.deleteFeedback(userInput.getEmployeeIdFromUser(), false);
+                    feedbackController.deleteFeedback(userInput.getFeedbackIdFromUser(), false);
                     break;
                 }
                 case 6: {
-                    feedbackController.editFeedback(userInput.getEmployeeIdFromUser());
+                    feedbackController.editFeedback(userInput.getFeedbackUpdateData());
                     break;
                 }
                 case 7: {
-                    // Logika dla Zadania 6
+
                     break;
                 }
                 case 8: {
@@ -64,11 +64,6 @@ public class Main {
             }
         }
     }
-
-    public static void abc() {
-        System.out.println("sfdfsdgfd");
-    }
-
 }
 
 
