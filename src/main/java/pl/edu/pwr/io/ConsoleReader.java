@@ -5,6 +5,7 @@ import pl.edu.pwr.model.Employee;
 import pl.edu.pwr.model.Feedback;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 
@@ -75,6 +76,7 @@ public class ConsoleReader {
 
                 RecordFinder finder = new RecordFinder();
                 finder.findClosestRecord(firstName + "," + lastName);
+                System.out.println("Wpisz wybrane id");
                 employeeID = inputValidator.getCorrectID();
                 break;
             }
@@ -85,6 +87,37 @@ public class ConsoleReader {
             }
         }
         return employeeID;
+    }
+
+    public String getTimePeriod() {
+        String timePeriod;
+
+        System.out.println("Wybierz opcje z menu:");
+        System.out.println("1. Trend tygodniowy");
+        System.out.println("2. Trend miesięczny");
+        System.out.println("3. Trend roczny");
+        int choice = scanner.nextInt();
+
+        switch (choice) {
+            case 1: {
+                timePeriod = "-1 week";
+                break;
+            }
+            case 2: {
+                timePeriod = "-1 month";
+                break;
+            }
+            case 3: {
+                timePeriod = "-1 year";
+                break;
+            }
+            default: {
+                System.out.println("Nie wybrales zadnej opcji domyslnie to trend miesięczny");
+                timePeriod = "-1 month";
+                break;
+            }
+        }
+        return timePeriod;
     }
 
     public Feedback getFeedbackUpdateData() {
@@ -125,7 +158,7 @@ public class ConsoleReader {
         String comment;
 
         employeeID = getEmployeeIdFromUser();
-        date = inputValidator.getCorrectDate();
+        date = Date.valueOf(LocalDate.now());
         isPositive = inputValidator.getCorrectGrade();
         weight = inputValidator.getCorrectOpionionWeight();
         comment = inputValidator.getComment();

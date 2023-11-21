@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class EmployeeController implements EmployeeService {
 
-    private Connection connection;
+    private final Connection connection;
 
     public EmployeeController(Connection connection) {
         this.connection = connection;
@@ -47,16 +47,6 @@ public class EmployeeController implements EmployeeService {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public Employee getEmployeeById(int employeeId) {
-        return null;
-    }
-
-    @Override
-    public ArrayList<Employee> getAllEmployees() {
-        return null;
     }
 
     @Override

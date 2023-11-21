@@ -52,7 +52,7 @@ public class Main {
                     break;
                 }
                 case 7: {
-
+                    consolePrinter.printTrend(feedbackController.getFeedbackByTime(userInput.getTimePeriod(), userInput.getEmployeeIdFromUser()));
                     break;
                 }
                 case 8: {

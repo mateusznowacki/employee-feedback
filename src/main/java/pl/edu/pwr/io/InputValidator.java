@@ -100,7 +100,6 @@ public class InputValidator {
             } else {
                 System.out.println("Podaj jeszcze raz prawidłową datę");
             }
-
         } while (true);
 
         return new Date(year, month, day);
@@ -111,11 +110,7 @@ public class InputValidator {
         int number;
         System.out.println("Jesli opinia jest pozytywna wpisz 1 jeśli jest negatywna wpisz 0");
         number = Integer.parseInt(scanner.nextLine().trim());
-        if (number == 1) {
-            return true;
-        } else {
-            return false;
-        }
+        return number == 1;
     }
 
     public int getCorrectOpionionWeight() {
@@ -169,11 +164,7 @@ public class InputValidator {
         int day = Integer.parseInt(parts[0]);
         int month = Integer.parseInt(parts[1]);
         int year = Integer.parseInt(parts[2]);
-        if (day >= 1 && day <= 31 && month >= 1 && month <= 12 && year >= 0 && year <= 9999) {
-            return true;
-        } else {
-            return false;
-        }
+        return day >= 1 && day <= 31 && month >= 1 && month <= 12 && year >= 0 && year <= 9999;
     }
 
 }

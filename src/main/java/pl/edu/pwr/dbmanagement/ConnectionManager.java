@@ -7,11 +7,8 @@ import java.sql.SQLException;
 public class ConnectionManager {
 
     private static ConnectionManager instance;
-    private Connection connection;
+    private final Connection connection;
     private static final String URL = "jdbc:sqlite:src/main/resources/database.db";
-   // private static final String user = "server639277_empfb";
-  //  private static final String password = "Admin123#";
-
 
     private ConnectionManager() {
         try {

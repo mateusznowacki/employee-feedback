@@ -9,12 +9,8 @@ public interface FeedbackService {
 
     void deleteFeedback(int id, boolean deleteAll);
 
-
-    ArrayList<Feedback> getTrendWeekly(int employeeId);
-
-    ArrayList<Feedback> getTrendMonthly(int employeeId);
-
-    ArrayList<Feedback> getTrendQuarterly(int employeeId);
+    public ArrayList<Feedback> getFeedbackByTime(String timePeriod, int employeeId);
 
     void editFeedback(Feedback feedback);
+
 }

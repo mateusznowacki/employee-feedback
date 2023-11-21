@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class RecordFinder {
 
-    private Connection connection;
+    private final Connection connection;
 
     public RecordFinder() {
         this.connection = ConnectionManager.getInstance().getConnection();
@@ -23,7 +23,7 @@ public class RecordFinder {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                isResultSetEmpty=false;
+                isResultSetEmpty = false;
 
                 String resultFeedbackID = resultSet.getString("feedback_id");
                 String resultComment = resultSet.getString("comment");
@@ -32,7 +32,6 @@ public class RecordFinder {
             if (isResultSetEmpty) {
                 System.out.println("Nie znalezono opinii dla podanego pracownika");
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -41,7 +40,7 @@ public class RecordFinder {
     public void findClosestRecord(String userInput) {
         boolean isResultSetEmpty = true;
 
-        String parts[] = userInput.split(",");
+        String[] parts = userInput.split(",");
         String firstName = parts[0];
         String lastName = parts[1];
 
@@ -61,7 +60,7 @@ public class RecordFinder {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                isResultSetEmpty= false;
+                isResultSetEmpty = false;
 
                 int employeeId = resultSet.getInt("employee_id");
                 String resultFirstName = resultSet.getString("first_name");
@@ -73,7 +72,6 @@ public class RecordFinder {
             if (isResultSetEmpty) {
                 System.out.println("Nie znalezono takiego pracownika, aby kontynuować wpisz 0");
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
