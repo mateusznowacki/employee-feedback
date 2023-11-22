@@ -5,12 +5,12 @@ import java.sql.Date;
 public class Feedback {
     private int opinionID;
     private int employeeID;
-    private  Date date;
+    private Date date;
     private boolean isPositive;
     private int weight;
     private String comment;
 
-    public Feedback(int opinionID, boolean isPositive,  int weight, String comment) {
+    public Feedback(int opinionID, boolean isPositive, int weight, String comment) {
         this.opinionID = opinionID;
         this.isPositive = isPositive;
         this.weight = weight;

@@ -5,7 +5,6 @@ import pl.edu.pwr.model.Employee;
 import pl.edu.pwr.model.Feedback;
 
 import java.sql.Date;
-import java.time.LocalDate;
 import java.util.Scanner;
 
 
@@ -37,7 +36,6 @@ public class ConsoleReader {
         return new Employee(firstName, lastName, email);
     }
 
-
     public Employee getEmployeeUpdateData() {
         String firstName;
         String lastName;
@@ -54,7 +52,6 @@ public class ConsoleReader {
             return new Employee(0, "NONE", "NONE", "NONE");
         }
     }
-
 
     public int getEmployeeIdFromUser() {
         int employeeID = 0;
@@ -158,7 +155,7 @@ public class ConsoleReader {
         String comment;
 
         employeeID = getEmployeeIdFromUser();
-        date = Date.valueOf(LocalDate.now());
+        date = Date.valueOf(inputValidator.getCorrectDate());
         isPositive = inputValidator.getCorrectGrade();
         weight = inputValidator.getCorrectOpionionWeight();
         comment = inputValidator.getComment();

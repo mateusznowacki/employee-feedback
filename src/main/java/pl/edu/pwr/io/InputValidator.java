@@ -1,6 +1,5 @@
 package pl.edu.pwr.io;
 
-import java.sql.Date;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -82,10 +81,11 @@ public class InputValidator {
         return id;
     }
 
-    public Date getCorrectDate() {
-        int year;
-        int month;
-        int day;
+    public String getCorrectDate() {
+        String year;
+        String month;
+        String day;
+        String formatted;
 
         do {
             System.out.println("Podaj date w formacie dd-mm-yyyy");
@@ -93,18 +93,18 @@ public class InputValidator {
 
             if (isValidDate(date)) {
                 String[] parts = date.split("-");
-                day = Integer.parseInt(parts[0]);
-                month = Integer.parseInt(parts[1]);
-                year = Integer.parseInt(parts[2]);
+                day = parts[0];
+                month = parts[1];
+                year = parts[2];
+                formatted = year + "-" + month + "-" + day;
                 break;
             } else {
                 System.out.println("Podaj jeszcze raz prawidłową datę");
             }
         } while (true);
 
-        return new Date(year, month, day);
+        return formatted;
     }
-
 
     public boolean getCorrectGrade() {
         int number;
@@ -166,5 +166,4 @@ public class InputValidator {
         int year = Integer.parseInt(parts[2]);
         return day >= 1 && day <= 31 && month >= 1 && month <= 12 && year >= 0 && year <= 9999;
     }
-
 }

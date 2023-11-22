@@ -8,6 +8,7 @@ import pl.edu.pwr.service.FeedbackController;
 
 import java.sql.Connection;
 
+
 public class Main {
     public static void main(String[] args) {
         ConnectionManager connectionManager = ConnectionManager.getInstance();

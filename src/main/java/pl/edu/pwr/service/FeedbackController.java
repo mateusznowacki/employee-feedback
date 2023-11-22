@@ -45,7 +45,7 @@ public class FeedbackController implements FeedbackService {
         String sqlInsertFeedback = "INSERT INTO feedback (employee_id, date, is_positive, weight, comment) VALUES (?,?,?,?,?)";
         try (PreparedStatement statement = connection.prepareStatement(sqlInsertFeedback)) {
             statement.setInt(1, feedback.getEmployeeID());
-            statement.setDate(2, feedback.getDate());
+            statement.setString(2, String.valueOf(feedback.getDate()));
             statement.setBoolean(3, feedback.isPositive());
             statement.setInt(4, feedback.getWeight());
             statement.setString(5, feedback.getComment());

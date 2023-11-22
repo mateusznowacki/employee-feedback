@@ -43,8 +43,7 @@ public class ConsolePrinter {
             totalWeight += feedback.getWeight();
             opinionsCounter++;
         }
-        //double avgWeight = (totalWeight / opinionsCounter);
-        double avgWeight = 1;
+        double avgWeight = (totalWeight / opinionsCounter);
 
         if (totalWeight == 0) {
             System.out.println("Brak danych do analizy");
@@ -64,8 +63,6 @@ public class ConsolePrinter {
                 System.out.println("Liczba opinii pozytywnych to: " + positiveOpinions + " a negatywnych to: " + negativeOpinions);
                 System.out.println("Średnia waga opinii to: " + avgWeight);
             }
-
         }
-
     }
 }

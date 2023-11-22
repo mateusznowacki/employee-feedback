@@ -9,7 +9,7 @@ public interface FeedbackService {
 
     void deleteFeedback(int id, boolean deleteAll);
 
-    public ArrayList<Feedback> getFeedbackByTime(String timePeriod, int employeeId);
+    ArrayList<Feedback> getFeedbackByTime(String timePeriod, int employeeId);
 
     void editFeedback(Feedback feedback);
 
