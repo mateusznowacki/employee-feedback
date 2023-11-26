@@ -37,7 +37,7 @@ public class EmployeeController implements EmployeeService {
                     int rowsAffected = preparedStatement.executeUpdate();
 
                     if (rowsAffected > 0) {
-                        System.out.println("Pracownik zostal dodany prawwdlowo");
+                        System.out.println("Pracownik zostal dodany prawidłowo");
                     } else {
                         System.out.println("Blad podczas dodawania pracownika");
                     }

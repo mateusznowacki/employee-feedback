@@ -12,7 +12,7 @@ public class ConnectionManager {
 
     private ConnectionManager() {
         try {
-            Class.forName("org.mariadb.jdbc.Driver");
+            Class.forName("org.sqlite.JDBC");
             this.connection = DriverManager.getConnection(URL);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
